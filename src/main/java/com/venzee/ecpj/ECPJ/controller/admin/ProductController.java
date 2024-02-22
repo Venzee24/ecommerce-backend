@@ -1,4 +1,4 @@
-package com.venzee.ecpj.ECPJ.controller;
+package com.venzee.ecpj.ECPJ.controller.admin;
 
 import com.venzee.ecpj.ECPJ.common.ApiResponse;
 import com.venzee.ecpj.ECPJ.dataTransferObject.ProductDto;
@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/product")
+@RequestMapping("/api/admin/product")
 public class ProductController {
     private ProductService productService;
 

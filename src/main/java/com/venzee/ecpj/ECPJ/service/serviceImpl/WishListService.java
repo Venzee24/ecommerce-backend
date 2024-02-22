@@ -3,6 +3,7 @@ package com.venzee.ecpj.ECPJ.service.serviceImpl;
 import com.venzee.ecpj.ECPJ.common.ApiResponse;
 import com.venzee.ecpj.ECPJ.dataTransferObject.ProductDto;
 import com.venzee.ecpj.ECPJ.exception.AuthenticationFailException;
+import com.venzee.ecpj.ECPJ.exception.CustomException;
 import com.venzee.ecpj.ECPJ.exception.UserNotFoundException;
 import com.venzee.ecpj.ECPJ.model.User;
 import com.venzee.ecpj.ECPJ.model.WishList;
@@ -43,12 +44,23 @@ public class WishListService implements ParentForWishListService {
     public List<ProductDto> getWishListByUser(User user) {
        List<WishList> wishLists= wishListRepository.findByUser(user);
        if (wishLists.isEmpty()){
-           throw new UserNotFoundException("WishList not found by user.");
+           throw new CustomException("WishList not found by user.");
        }
        List<ProductDto> productDtos = new LinkedList<>();
        for (WishList wishList: wishLists){
            productDtos.add(productService.mapToProductDto(wishList.getProduct()));
        }
        return productDtos;
+    }
+
+    @Override
+    public void delete(User user, int id) {
+     List<WishList> wishLists = wishListRepository.findByUser(user);
+     if (wishLists.isEmpty()){
+         throw new CustomException("WishList not found by User");
+     }
+     WishList wishList =wishLists.get(id-1);
+     wishListRepository.delete(wishList);
+
     }
 }

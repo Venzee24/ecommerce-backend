@@ -11,4 +11,6 @@ public interface ParentForWishListService {
     ApiResponse add(WishList wishList);
 
     List<ProductDto> getWishListByUser(User user);
+
+    void delete(User user, int id);
 }

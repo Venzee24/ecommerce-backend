@@ -30,6 +30,7 @@ public class CartService implements ParentForCartService {
         this.productService = productService;
     }
 
+
     public  ApiResponse add(AddToCartDto addToCartDto, User user) {
      Product product=productService.findById(addToCartDto.getProductId());
 
@@ -59,6 +60,7 @@ public class CartService implements ParentForCartService {
        double totalCost =0;
        for (Cart cart:cartList){
            CartItemDto cartItemDto = new CartItemDto();
+
            cartItemDto.setProduct(cart.getProduct());
            cartItemDto.setQuantity(cart.getQuantity());
            cartItemDto.setId(cart.getId());
@@ -67,6 +69,8 @@ public class CartService implements ParentForCartService {
            totalCost+= cart.getQuantity()*cart.getProduct().getPrice();
        }
        CartDto cartDto = new CartDto();
+
+
        cartDto.setCartItemDtos(cartItemDtos);
        cartDto.setTotalCost(totalCost);
        return cartDto;
@@ -84,4 +88,7 @@ public class CartService implements ParentForCartService {
     }
     cartRepository.delete(cart);
     }
+
+
+
 }

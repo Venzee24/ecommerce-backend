@@ -1,4 +1,4 @@
-package com.venzee.ecpj.ECPJ.controller;
+package com.venzee.ecpj.ECPJ.controller.admin;
 
 import com.venzee.ecpj.ECPJ.common.ApiResponse;
 import com.venzee.ecpj.ECPJ.model.Category;
@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/category")
+@RequestMapping("api/admin/category")
 public class CategoryController {
     private CategoryService categoryService;
     @Autowired
